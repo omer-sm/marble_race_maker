@@ -2,6 +2,12 @@ defmodule MarbleRaceMaker.VidProcess do
   require Logger
   @out_folder "outputs"
 
+  def merge_audio_video(audio_path, video_path) do
+    Logger.info("Merging audio and video..")
+    out_file = @out_folder <> "/output.mp4"
+    System.shell("ffmpeg -y -i #{video_path} -i #{audio_path} -c:v copy -map 0:v:0 -map 1:a:0 -shortest #{out_file}")
+  end
+
   def split_video(path, fps \\ 2) do
     Logger.info("Splitting video with #{fps} fps from #{path}..")
     name = Path.basename(path)
@@ -53,6 +59,6 @@ defmodule MarbleRaceMaker.VidProcess do
       area_partial.(b, c) +
       area_partial.(c, d) +
       area_partial.(d, a)
-    (abs(area) / 2) > 15000
+    (abs(area) / 2) > 20000
   end
 end

@@ -1,9 +1,0 @@
-file 'D:\\Mangio-RVC-v23.7.0\\audio-outputs\\Ken.mp3'
-inpoint 55
-outpoint 60
-file 'D:\\Mangio-RVC-v23.7.0\\audio-outputs\\Carti.mp3'
-inpoint 60
-outpoint 68
-file 'D:\\Mangio-RVC-v23.7.0\\audio-outputs\\Ken.mp3'
-inpoint 68
-outpoint 74
