@@ -22,9 +22,6 @@ results = []
 
 for img in imgs:
     res = reader.readtext(FRAMES_PATH + "/" + img, allowlist="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", contrast_ths=0.4, adjust_contrast=0.7)
-    #print(img)
-    #print(res)
-    #print("\n")
     res_obj = [
         {
             "bb": convert_ints(t[0]),
