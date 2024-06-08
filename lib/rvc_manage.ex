@@ -2,7 +2,7 @@ defmodule MarbleRaceMaker.RvcManage do
   require Logger
   @models %{
     "Ken" => "KenCarsonV3",
-    "Carti" => "NewCarti",
+    "Carti" => "carti",
     "Yeat" => "Yeat6000",
     "Lone" => "destroylonely"
   }

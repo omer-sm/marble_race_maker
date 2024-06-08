@@ -24,7 +24,7 @@ defmodule MarbleRaceMaker.AudioManage do
     tl_serialized = serialize_timeline(timeline)
     File.write(@timeline_out_path, tl_serialized)
     Logger.info("Concatenating vocals..")
-    System.shell("ffmpeg -y -f concat -async 0 -safe 0 -i #{@timeline_out_path} -c:a libshine -b:a 128k #{@vocals_out_path}")
+    System.shell("ffmpeg -y -f concat -safe 0 -i #{@timeline_out_path} -af \"aresample=async=1,atrim=start=0.05\" -c:a libmp3lame -b:a 128k #{@vocals_out_path}")
     @vocals_out_path
   end
 
@@ -32,7 +32,7 @@ defmodule MarbleRaceMaker.AudioManage do
   defp serialize_timeline(timeline) do
     timeline
     |> Enum.map_reduce(0, fn {character, time}, acc ->
-      time = Float.floor(time, 3)
+      time = Float.round(time, 2)
       str = "file '#{@rvc_out_path}#{character}.mp3'\ninpoint #{acc}\noutpoint #{time}\n"
       {str, time}
     end)

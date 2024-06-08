@@ -16,7 +16,7 @@ defmodule MarbleRaceMaker do
   def process_video(video_path, characters, audio_path, opts \\ []) do
     %{fps: fps} = Enum.into(opts, @default_opts)
     # clear rvc out directory
-    clear_out_dir(characters)
+    #clear_out_dir(characters)
     # split into frames and get timeline
     {timeline, _total} = split_video(video_path, fps)
     |> process_frames()

@@ -3,7 +3,7 @@ import wexpect
 import json
 
 def make_infer_cmd(model, index_file, source, output):
-    return f"{model}.pth opt/{source} {output}.mp3 logs/{index_file} 0 0 crepe 160 3 0 1 0.95 0.33 0.45 True 8.0 1.2"
+    return f"{model}.pth {source} {output}.mp3 logs/{index_file} 0 0 crepe-tiny 160 3 0 1 0.75 0.33 0.45 True 6.0 1.2"
 
 RVC_PATH = "D:\\Mangio-RVC-v23.7.0"
 MODELS_PATH = "./models.json"
@@ -16,6 +16,7 @@ with open(MODELS_PATH) as f:
     models = {k: v for k, v in json.load(f).items() if k in MODELS_TO_RUN}
 
 rvc = wexpect.spawn("cmd.exe", cwd=RVC_PATH)
+
 
 cmds = [
     r"runtime\python infer-web.py --pycmd runtime/python --is_cli",
@@ -33,8 +34,9 @@ for i, cmd in enumerate(infer_cmds):
     rvc.expect("INFER: ", timeout=300)
     print(f"finished {i+1} / {len(infer_cmds)} inferrences..")
 
-print(rvc.before)
+#print(rvc.before)
 rvc.sendline("exit")
 rvc.sendline("exit")
 rvc.wait()
 print("Done!")
+
