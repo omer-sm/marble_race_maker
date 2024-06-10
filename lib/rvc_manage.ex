@@ -4,7 +4,10 @@ defmodule MarbleRaceMaker.RvcManage do
     "Ken" => "KenCarsonV3",
     "Carti" => "carti",
     "Yeat" => "Yeat6000",
-    "Lone" => "destroylonely"
+    "Lone" => "destroylonely",
+    "Biden" => "biden",
+    "Trump" => "trump",
+    "Cartman" => "EricCartman"
   }
   @rvc_path "D:\\Mangio-RVC-v23.7.0"
 

@@ -12,7 +12,7 @@ defmodule MarbleRaceMaker do
   example:
   MarbleRaceMaker.process_video("resources/test.mp4", ["Ken", "Carti", "Yeat", "Lone"], "audios/2024.mp3", [fps: 2])
   """
-  @default_opts %{fps: 1}
+  @default_opts %{fps: 5}
   def process_video(video_path, characters, audio_path, opts \\ []) do
     %{fps: fps} = Enum.into(opts, @default_opts)
     # clear rvc out directory
@@ -28,6 +28,20 @@ defmodule MarbleRaceMaker do
     concat_vocals(timeline)
     |> merge_vocals_instrumental(instrumental)
     |> merge_audio_video(video_path)
+    Logger.info("Done!")
+  end
+  @doc """
+  vocal path is absolute path
+  """
+  def process_video_nouvr(video_path, characters, vocal_path, opts \\ []) do
+    %{fps: fps} = Enum.into(opts, @default_opts)
+    {timeline, _total} = split_video(video_path, fps)
+    |> process_frames()
+    |> get_leaders(characters)
+    |> get_leaders_times(fps)
+    run_rvc(vocal_path, characters)
+    concat_vocals(timeline)
+    merge_audio_video("outputs/vocals.mp3", video_path)
     Logger.info("Done!")
   end
 
